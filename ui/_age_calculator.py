@@ -22,11 +22,14 @@ class AgeCalculator(ctk.CTkFrame):
     _current_progress: float = 0
 
     def __init__(self, *args, **kwargs) -> None:
+        # initialize parent
         super().__init__(*args, **kwargs)
 
+        # create age label
         self.label = ctk.CTkLabel(self, text="Enter your age: ")
         self.label.grid(row=0, column=0, pady=10, padx=10)
 
+        # create entry
         self.age_var = ctk.StringVar()
         self.age_var.trace_add("write", self._on_age_change)
         self.age_entry = ctk.CTkEntry(
@@ -37,6 +40,7 @@ class AgeCalculator(ctk.CTkFrame):
         )
         self.age_entry.grid(row=1, column=0, padx=10, pady=10)
 
+        # create button
         ctk.CTkButton(
             self,
             text="Calculate",

@@ -2,7 +2,7 @@
 _selection_frame.py
 16. May 2023
 
-<description>
+The Selection Screen
 
 Author:
 Nilusink
@@ -22,10 +22,14 @@ class SelectionFrame(ctk.CTkFrame):
     ) -> None:
         self._selection_callback = selection_callback
 
+        # initialize parent
         super().__init__(*args, **kwargs)
+
+        # configure grid
         self.grid_rowconfigure(list(range(3)), weight=1)
         self.grid_columnconfigure(0, weight=1)
 
+        # create buttons
         self.scientific_calculator_button = ctk.CTkButton(
             self,
             text="Scientific",

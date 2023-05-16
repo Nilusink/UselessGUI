@@ -14,6 +14,7 @@ from os import path
 import typing as tp
 
 
+# load image
 VOLTAGE_DIVIDER = ctk.CTkImage(
     dark_image=Image.open(
         path.dirname(__file__) + "/assets/Spannungsteiler.png"
@@ -36,6 +37,7 @@ class OhmsCalculator(ctk.CTkFrame):
         # save parameters
         self._selection_callback = selection_callback
 
+        # initialize parent
         super().__init__(*args, **kwargs)
 
         # configure grid
@@ -119,8 +121,12 @@ class OhmsCalculator(ctk.CTkFrame):
         self._btn.bind("<Enter>", self._on_hover)
 
     def _on_hover(self, *_trash) -> None:
+        """
+        called when the button is hovered
+        """
         has_changed = False
 
+        # randomly change direction
         if randint(0, 1):
             self._curr_x = int(not self._curr_x)
             has_changed = True
