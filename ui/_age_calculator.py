@@ -3,7 +3,7 @@
 _age_calculator.py
 16. May 2023
 
-Calculates your age based on your age and randomness
+Calculates your age based on your age + randomness
 
 Author:
 Nilusink
@@ -120,15 +120,12 @@ class AgeCalculator(ctk.CTkFrame):
 
         # generate a random seed for better prediction
         seed = randint(12, 74823341)
-        print("seed: ", seed)
         age_nums = [seed, randint(12, 984)] + [ord(c) for c in user_age]
 
         # calculate the flux age values
         age_avg = sum([ord(c) for c in user_age]) / (len(user_age) * 2)
         age_mul = reduce(lambda s, n: s * n, age_nums) / seed
         age_seed = reduce(lambda s, n: n - (s - seed**2), age_nums) / seed**2
-
-        print(f"{age_avg=}, {age_mul=}, {age_seed=}")
 
         # save the age
         self._age = round(1e3 * age_avg * ((age_mul / seed) + age_seed), 7)
