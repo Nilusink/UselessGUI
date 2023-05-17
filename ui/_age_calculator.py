@@ -127,5 +127,8 @@ class AgeCalculator(ctk.CTkFrame):
         age_mul = reduce(lambda s, n: s * n, age_nums) / seed
         age_seed = reduce(lambda s, n: n - (s - seed**2), age_nums) / seed**2
 
-        # save the age
-        self._age = round(1e3 * age_avg * ((age_mul / seed) + age_seed), 7)
+        # save the age to be shown later
+        self._age = round(
+            1e3 * age_avg * ((age_mul / seed) + age_seed),
+            7
+        ) % age_avg * 3
