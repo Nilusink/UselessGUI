@@ -56,7 +56,7 @@ class SelectionFrame(ctk.CTkFrame):
 
         self.ohms_calculator_button = ctk.CTkButton(
             self,
-            text="Ohm",
+            text="Voltage Divider",
             command=lambda *_trash: self._selection_callback(3, True)
         )
         self.ohms_calculator_button.grid(
