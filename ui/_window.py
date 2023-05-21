@@ -7,10 +7,13 @@ Main program window
 Author:
 Nilusink
 """
+from ._scientific_calculator import ScientificCalculator
 from ._selection_frame import SelectionFrame
 from ._ohms_calculator import OhmsCalculator
 from ._age_calculator import AgeCalculator
+from tkinter.messagebox import showinfo
 import customtkinter as ctk
+from random import randint
 
 
 ctk.set_appearance_mode("dark")
@@ -37,6 +40,7 @@ class Window(ctk.CTk):
             SelectionFrame(self, selection_callback=self.set_current_frame_id),
             AgeCalculator(self),
             OhmsCalculator(self, selection_callback=self.set_current_frame_id),
+            ScientificCalculator(self)
         ]
 
         self.current_frame_id = 0
@@ -59,12 +63,21 @@ class Window(ctk.CTk):
 
         self._current_frame_id = new_id
 
-    def set_current_frame_id(self, new_id: int) -> None:
+    def set_current_frame_id(
+            self,
+            new_id: int,
+            random_dismiss: bool = True
+    ) -> None:
         """
         the exact same thing as setting  current_frame_id , but as
         a function, so it can be passed as a parameter
 
         :param new_id: the new frame id
-        :type new_id: int
+        :param random_dismiss: if set to true, randomly dismisses the change
+        request
         """
+        if random_dismiss and randint(0, 3) == 0:
+            showinfo("No", "I don't want to...")
+            return
+
         self.current_frame_id = new_id
