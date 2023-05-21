@@ -112,31 +112,35 @@ class ScientificCalculator(ctk.CTkFrame):
         calculate the result and show it to the user
         """
         # compute random calculation
-        match randint(0, 6):
-            case 0:  # addition
-                self._result.set(self._val0.get() + self._val1.get())
+        try:
+            match randint(0, 6):
+                case 0:  # addition
+                    self._result.set(self._val0.get() + self._val1.get())
 
-            case 1:  # subtraction
-                self._result.set(self._val0.get() - self._val1.get())
+                case 1:  # subtraction
+                    self._result.set(self._val0.get() - self._val1.get())
 
-            case 2:  # multiplication
-                self._result.set(self._val0.get() * self._val1.get())
+                case 2:  # multiplication
+                    self._result.set(self._val0.get() * self._val1.get())
 
-            case 3:  # division
-                self._result.set(self._val0.get() / self._val1.get())
+                case 3:  # division
+                    self._result.set(self._val0.get() / self._val1.get())
 
-            case 4:  # string addition
-                self._result.set(
-                    float(str(self._val0.get()) + str(self._val1.get()))
-                )
+                case 4:  # string addition
+                    self._result.set(
+                        float(str(self._val0.get()) + str(self._val1.get()))
+                    )
 
-            case 5:  # completely random numbers
-                self._result.set(randint(-999_999, 999_999))
+                case 5:  # completely random numbers
+                    self._result.set(randint(-999_999, 999_999))
 
-            case 6:  # random numbers between set values
-                self._result.set(randint(self._val0.get(), self._val1.get()))
+                case 6:  # random numbers between set values
+                    self._result.set(randint(self._val0.get(), self._val1.get()))
 
-            case _:  # shouldn't happen, but you never know
-                self._result.set(111111121111111)
+                case _:  # shouldn't happen, but you never know
+                    self._result.set(111111121111111)
+
+        except ValueError:  # in case a random result threw an error
+            self._result.set(0)
 
         showwarning("Result", f"Your personal result: {self._result.get()}")

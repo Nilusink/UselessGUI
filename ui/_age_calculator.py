@@ -129,6 +129,6 @@ class AgeCalculator(ctk.CTkFrame):
 
         # save the age to be shown later
         self._age = round(
-            1e3 * age_avg * ((age_mul / seed) + age_seed),
-            7
-        ) % age_avg * 3
+            (1e3 * age_avg * ((age_mul / seed) + age_seed)) % age_avg * 3,
+            6
+        )
